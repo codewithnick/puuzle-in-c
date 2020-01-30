@@ -1,0 +1,229 @@
+#include "main.h"
+#include "class.cpp"
+
+
+int main()
+{
+
+play();
+getch();
+return 0;
+}
+ void play()
+ {
+  int x[4][4],m ,n;
+  register int count=0;
+ int row=3,col=3;
+ setarray(&x[0][0]);
+ draw(&x[0][0]);
+ cout<<"sort the numbers from 1-15 in order to win\n";
+ cout<<"enter any key to continue";
+ getch();
+ key *w;
+ up up;
+ w=&up;
+ key *a;
+ down down;
+ a=&down;
+ key *s;
+ left left;
+ s=&left;          //wasd for up down left right
+ key *d;
+ right right;
+ d=&right;
+ check:
+ {
+       for(m=0;m<4;m++)
+       {
+       		for(n=0;n<4;n++)
+            {  int *p;
+               p=&x[m][n];
+              if((*p>*p+1)&&(m!=3||n!=3))
+              {
+               count++;
+              }
+             }
+          }
+      if(count==12)
+      {goto congo;}
+
+ }
+int c;
+          while(1)
+                {
+            clrscr();
+             draw(&x[0][0]);
+             c=getch();
+
+
+                      	if(c== KEY_UP)
+                        {
+                           if(row==0||row==1||row==2)
+                           {
+
+                           	 w->move(&x[row][col]);
+                     	       row++;
+                        	    cout<<row<<col<<&x[row][col]<<endl ; //for testing
+                               goto check;
+
+                            }
+                         }
+
+
+
+                     	 else if (c== KEY_DOWN)
+                         {
+                             if(row==1||row==2||row==3)
+                             {
+                        	      a->move(&x[row][col]);
+											row--;
+                             		cout<<row<<col<<&x[row][col]<<endl ;//for testing
+                                 goto check;
+                             }
+                         }
+
+
+      					   else if(c== KEY_LEFT)
+                        {
+                             if (col==0||col==1||col==2)
+                             {
+                        	     s->move(&x[row][col]);
+                           	  col++;
+                            	 cout<<row<<col<<&x[row][col]<<endl ; //for testing
+                                goto check;
+                             }
+                         }
+
+
+
+      					   else if(c== KEY_RIGHT)
+                         {
+                              if(col==1||col==2||col==3)
+                              {
+                            	  d->move(&x[row][col]);
+                              	col--;
+                            	  cout<<row<<col<<&x[row][col]<<endl ; //for testing
+                                 goto check;
+                              }
+                          }
+                          else{continue ;}
+         }
+
+
+ congo:{
+  C; }
+ }
+
+
+
+
+ void swap(int *x,int *b)
+ {
+ int temp;
+temp=*x;
+
+ *x=*b;
+
+ *b=temp;
+ }
+
+
+
+
+
+
+
+
+
+void setarray(int *x)
+{
+   *x=1;x++;
+   *x=4;x++;
+	*x=15;x++;
+	*x=7;x++;
+	*x=8;x++;
+	*x=10;x++;
+	*x=2;x++;
+	*x=11;x++;
+	*x=14;x++;
+	*x=3;x++;
+	*x=6;x++;
+	*x=13;x++;
+	*x=12;x++;
+	*x=9;x++;
+	*x=5;x++;
+	*x=0;
+}
+void draw(int *x)
+{int i;
+
+	cout<<endl<<"+---+---+---+---+"<<endl;
+	for (i=0;i<4;i++)
+	{ if  (*x<10)
+            {
+				cout<<"|  "<<*x;
+     			  x++;
+            }
+       else
+           {
+           	cout<<"| "<<*x;
+     			  x++;
+            }
+   }
+   cout<<"|\n";
+
+
+
+   	cout<<"+---+---+---+---+"<<endl;
+   	for (i=0;i<4;i++)
+	{   if  (*x<10)
+            {
+				cout<<"|  "<<*x;
+     			  x++;
+            }
+       else
+           {
+           	cout<<"| "<<*x;
+     			  x++;
+            }
+
+   }
+   cout<<"|\n";
+
+
+	cout<<"+---+---+---+---+"<<endl;
+   	for (i=0;i<4;i++)
+	{ if  (*x<10)
+            {
+				cout<<"|  "<<*x;
+     			  x++;
+            }
+       else
+           {
+           	cout<<"| "<<*x;
+     			  x++;
+            }
+   }
+   cout<<"|\n";
+
+
+
+	cout<<"+---+---+---+---+"<<endl;
+	 	for (i=0;i<4;i++)
+	{
+		 if  (*x<10)
+            {
+				cout<<"|  "<<*x;
+     			  x++;
+            }
+       else
+           {
+           	cout<<"| "<<*x;
+     			  x++;
+            }
+   }
+   cout<<"|\n";
+	cout<<"+---+---+---+---+"<<endl;
+}
+
+
